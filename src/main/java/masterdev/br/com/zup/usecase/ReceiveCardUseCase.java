@@ -1,4 +1,4 @@
-package masterdev.br.com.zup;
+package masterdev.br.com.zup.usecase;
 
 import masterdev.br.com.zup.dto.CardDto;
 import masterdev.br.com.zup.factory.CardFactory;
@@ -19,6 +19,7 @@ public class ReceiveCardUseCase {
         try{
             card = CardFactory.getCard(CardNameEnum.valueOf(cardDto.getName()));
             // TO DO
+
         }catch(Exception exception){
             //to DO
             return card;

@@ -3,6 +3,8 @@ package masterdev.br.com.zup.factory;
 import masterdev.br.com.zup.model.*;
 import org.jboss.resteasy.core.ExceptionAdapter;
 
+import javax.ws.rs.NotFoundException;
+
 public class CardFactory {
     public static Card getCard(CardNameEnum cardNameEnum) throws Exception {
         switch(cardNameEnum){
@@ -28,7 +30,7 @@ public class CardFactory {
             case TECHLEADPOWER:
                 return new TechLeadPowerCard();
             default:
-                throw new Exception("Not found");
+                throw new NotFoundException("Not found");
         }
     }
 }
