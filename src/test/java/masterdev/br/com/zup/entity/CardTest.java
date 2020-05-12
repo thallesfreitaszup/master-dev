@@ -28,6 +28,6 @@ public class CardTest {
         Assertions.assertEquals(2, new CoffeeBreakCard().getMana());
         Assertions.assertEquals(2, new CoffeeBreakCard().getDamage());
         Assertions.assertEquals(-4, new StackOverflowCard().getMana());
-        Assertions.assertEquals(4, new StackOverflowCard().getDamage());
+        Assertions.assertEquals(3, new StackOverflowCard().getDamage());
     }
 }
