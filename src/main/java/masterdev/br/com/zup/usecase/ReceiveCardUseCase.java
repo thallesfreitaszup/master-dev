@@ -19,7 +19,6 @@ public class ReceiveCardUseCase {
         try{
             card = CardFactory.getCard(CardNameEnum.valueOf(cardDto.getName()));
             // TO DO
-
         }catch(Exception exception){
             //to DO
             return card;
