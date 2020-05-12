@@ -1,6 +1,5 @@
 package masterdev.br.com.zup.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Junior {
@@ -33,6 +32,6 @@ public class Junior {
     }
 
     public void setCards(List<Card> cards) {
-        cards = cards;
+        this.cards = cards;
     }
 }
