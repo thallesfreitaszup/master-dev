@@ -1,8 +1,7 @@
 package masterdev.br.com.zup.entity;
 
 
-import masterdev.br.com.zup.model.*;
-
+import masterdev.br.com.zup.model.juniorDeck.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

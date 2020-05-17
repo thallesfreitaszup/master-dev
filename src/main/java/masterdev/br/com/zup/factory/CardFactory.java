@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.factory;
 
 import masterdev.br.com.zup.model.*;
+import masterdev.br.com.zup.model.juniorDeck.*;
 
 import javax.ws.rs.NotFoundException;
 

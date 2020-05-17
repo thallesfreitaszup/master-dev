@@ -1,4 +1,6 @@
-package masterdev.br.com.zup.model;
+package masterdev.br.com.zup.model.players;
+
+import masterdev.br.com.zup.model.Card;
 
 import java.util.List;
 
