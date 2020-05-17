@@ -1,13 +1,14 @@
 package masterdev.br.com.zup.factory;
 
 import masterdev.br.com.zup.model.*;
+import masterdev.br.com.zup.model.bugDeck.*;
 import masterdev.br.com.zup.model.juniorDeck.*;
 
 import javax.ws.rs.NotFoundException;
 
 public class CardFactory {
     public static Card getCard(CardNameEnum cardNameEnum) throws NotFoundException {
-        switch(cardNameEnum){
+        switch (cardNameEnum) {
             case CHANGEEXPERIENCEPOWER:
                 return new ChangeExperiencePowerCard();
             case ANTIVIRUS:
@@ -29,6 +30,24 @@ public class CardFactory {
                 return new StackTraceCard();
             case TECHLEADPOWER:
                 return new TechLeadPowerCard();
+            case GOLPENAOCONSIGO:
+                return new GolpeNaoConsigo();
+            case CODIGOMALESCRITO:
+                return new CodigoMalEscrito();
+            case PERDEUADAILY:
+                return new PerdeuDaily();
+            case ENDPOINTBATENDOERRADO:
+                return new EndPointErrado();
+            case PERDENDOCONTATO:
+                return new PerdendoContato();
+            case MAADMDETEMPO:
+                return new AdmTempo();
+            case GIT:
+                return new Git();
+            case PANDEMIA:
+                return new Pandemia();
+            case SEMTESTE:
+                return new SemTeste();
             default:
                 throw new NotFoundException("Not found");
         }
