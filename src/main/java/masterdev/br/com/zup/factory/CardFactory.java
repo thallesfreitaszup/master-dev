@@ -4,8 +4,9 @@ import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
 import masterdev.br.com.zup.model.juniorDeck.*;
 import masterdev.br.com.zup.model.bugDeck.*;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class CardFactory extends Factory  {
 
     public  Card getCard(CardNameEnum cardNameEnum) throws Exception {
