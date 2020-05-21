@@ -6,9 +6,9 @@ import masterdev.br.com.zup.model.juniorDeck.*;
 import masterdev.br.com.zup.model.bugDeck.*;
 
 
-public class CardFactory {
+public class CardFactory extends Factory  {
 
-    public static Card getCard(CardNameEnum cardNameEnum) throws Exception {
+    public  Card getCard(CardNameEnum cardNameEnum) throws Exception {
         switch (cardNameEnum) {
             case CHANGEEXPERIENCEPOWER:
                 return new ChangeExperiencePowerCard();
