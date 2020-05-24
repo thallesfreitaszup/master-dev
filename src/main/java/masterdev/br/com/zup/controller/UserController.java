@@ -30,7 +30,7 @@ public class UserController {
         try{
               return userService.findUser(userRequest.toEntity())
               .map(user -> ResponseEntity.status(400).build())
-              .orElseGet(() -> ResponseEntity.status(200).body(userService.saveUser(userRequest.toEntity())) );
+              .orElseGet(() -> ResponseEntity.status(201).body(userService.saveUser(userRequest.toEntity())) );
         }catch(Exception e ){
             System.out.println(e);
             return ResponseEntity.status(500).build();
