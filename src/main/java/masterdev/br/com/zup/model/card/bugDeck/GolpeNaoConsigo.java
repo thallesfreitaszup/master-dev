@@ -1,4 +1,4 @@
-package masterdev.br.com.zup.model.bugDeck;
+package masterdev.br.com.zup.model.card.bugDeck;
 
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;

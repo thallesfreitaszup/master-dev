@@ -1,4 +1,4 @@
-package masterdev.br.com.zup.model.juniorDeck;
+package masterdev.br.com.zup.model.card.juniorDeck;
 
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;

@@ -2,8 +2,8 @@ package masterdev.br.com.zup.factory;
 
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
-import masterdev.br.com.zup.model.juniorDeck.*;
-import masterdev.br.com.zup.model.bugDeck.*;
+import masterdev.br.com.zup.model.card.juniorDeck.*;
+import masterdev.br.com.zup.model.card.bugDeck.*;
 import org.springframework.stereotype.Component;
 
 @Component

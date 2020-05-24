@@ -1,30 +1,58 @@
 package masterdev.br.com.zup.model.players;
 
 import masterdev.br.com.zup.model.card.Card;
-import masterdev.br.com.zup.model.card.PlayerTypeEnum;
 
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Player {
-    protected int mana;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    protected int manaPoints;
     protected int life;
-    protected PlayerTypeEnum name;
+    @Enumerated
+    protected PlayerTypeEnum type;
+    @Transient
     protected List<Card> cards;
 
-    public int getMana() {
-        return mana;
+    protected String nickName;
+
+    public Player(){
+
     }
 
-    public void setMana(int mana) {
-        this.mana = mana;
+    public long getId() {
+        return id;
     }
 
-    public PlayerTypeEnum getName() {
-        return name;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setName(PlayerTypeEnum name) {
-        this.name = name;
+    public PlayerTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(PlayerTypeEnum type) {
+        this.type = type;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public int getManaPoints() {
+        return manaPoints;
+    }
+
+    public void setManaPoints(int manaPoints) {
+        this.manaPoints = manaPoints;
     }
 
     public int getLife() {
@@ -42,4 +70,5 @@ public class Player {
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
+
 }

@@ -1,21 +1,53 @@
 package masterdev.br.com.zup.model.game;
 
+import masterdev.br.com.zup.dto.GameResponse;
 import masterdev.br.com.zup.model.players.Bug;
 import masterdev.br.com.zup.model.players.Junior;
 import masterdev.br.com.zup.model.players.Player;
 
+
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
-
+@Entity
 public class Game {
-    private static Game game;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Player> players;
+    private String status;
+    private String winner;
+    public Game() {
 
-    private Game() {
-        players = Arrays.asList(new Junior(),new Bug());
     }
-    public static Game getInstance(){
-      return  game == null ? (game = new Game()) : game;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public Game(String nickName) {
+        players = Arrays.asList(new Junior(nickName),new Bug());
     }
     public List<Player> getPlayers() {
         return players;
@@ -23,5 +55,9 @@ public class Game {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public GameResponse toResponse() {
+        return new GameResponse(this.id);
     }
 }
