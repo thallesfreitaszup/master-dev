@@ -3,6 +3,7 @@ package masterdev.br.com.zup.controller;
 import masterdev.br.com.zup.dto.GameResponse;
 import masterdev.br.com.zup.model.User;
 import masterdev.br.com.zup.model.UserRequest;
+import masterdev.br.com.zup.model.UserResponse;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.service.GameService;
 import masterdev.br.com.zup.service.UserService;
@@ -25,10 +26,11 @@ public class UserController {
         this.gameService = gameService;
     }
     @PostMapping
-    public ResponseEntity<User> registerUser(@RequestBody @Valid UserRequest userRequest){
+    public ResponseEntity<?> registerUser(@RequestBody @Valid UserRequest userRequest){
         try{
-            this.userService.saveUser(userRequest.toEntity());
-            return ResponseEntity.status(201).build();
+              return userService.findUser(userRequest.toEntity())
+              .map(user -> ResponseEntity.status(400).build())
+              .orElseGet(() -> ResponseEntity.status(200).body(userService.saveUser(userRequest.toEntity())) );
         }catch(Exception e ){
             System.out.println(e);
             return ResponseEntity.status(500).build();

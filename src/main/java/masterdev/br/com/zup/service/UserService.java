@@ -3,11 +3,14 @@ package masterdev.br.com.zup.service;
 import javassist.NotFoundException;
 import masterdev.br.com.zup.model.User;
 import masterdev.br.com.zup.model.UserRequest;
+import masterdev.br.com.zup.model.UserResponse;
 import masterdev.br.com.zup.model.players.Player;
 import masterdev.br.com.zup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -18,9 +21,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(User user){
+    public UserResponse saveUser(User user){
         try{
-            return this.userRepository.save(user);
+            return this.userRepository.save(user).toResponse();
+        }catch(Exception e ){
+            throw e;
+        }
+    }
+    public Optional<User> findUser(User user){
+        try{
+            return this.userRepository.findByNickName(user.getNickName());
         }catch(Exception e ){
             throw e;
         }

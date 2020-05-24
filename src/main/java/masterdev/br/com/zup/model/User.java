@@ -15,13 +15,18 @@ public class User {
     private long id;
     private String nickName;
     private String password;
+
     public User() {
 
     }
+
     public User(String nickName, String password) {
         this.password = BcryptUtils.getInstance().hash(password);
         this.nickName = nickName;
 
+    }
+    public long getId() {
+        return id;
     }
 
     public boolean matchPassword(String password) {
@@ -44,5 +49,10 @@ public class User {
         this.password = password;
     }
 
-
+    public void setId(long id) {
+        this.id = id;
+    }
+    public UserResponse toResponse(){
+        return new UserResponse(this.id,this.nickName);
+    }
 }
