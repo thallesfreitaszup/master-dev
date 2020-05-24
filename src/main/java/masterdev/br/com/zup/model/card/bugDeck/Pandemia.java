@@ -1,4 +1,4 @@
-package masterdev.br.com.zup.model.bugDeck;
+package masterdev.br.com.zup.model.card.bugDeck;
 
 
 import masterdev.br.com.zup.model.card.Card;
@@ -9,8 +9,9 @@ public class Pandemia extends Card {
 
     public Pandemia() {
         super();
-        this.mana = -6;
-        this.damage = 5;
+        this.manaPoints = -8;
+        this.damage = 6;
         this.name = CardNameEnum.PANDEMIA;
+        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
     }
 }

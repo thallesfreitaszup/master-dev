@@ -1,9 +1,12 @@
 package masterdev.br.com.zup.model.players;
 
-import masterdev.br.com.zup.model.card.PlayerTypeEnum;
-import masterdev.br.com.zup.model.juniorDeck.*;
-import java.util.Arrays;
+import masterdev.br.com.zup.model.card.juniorDeck.*;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import java.util.Arrays;
+@Entity
+@DiscriminatorValue("JUNIOR")
 public class Junior extends Player {
 
     public Junior(){
@@ -11,6 +14,14 @@ public class Junior extends Player {
         this.life = 20;
         this.cards = Arrays.asList(new CoffeeCard(),new AntivirusCard(),new FrameworkCard(),new ChangeExperiencePowerCard(),new StackOverflowCard(),
                 new StackTraceCard(),new TechLeadPowerCard(), new CoffeeBreakCard());
-        this.name = PlayerTypeEnum.JUNIOR;
+
+        this.type = PlayerTypeEnum.JUNIOR;
+        this.imageUrl = "https://i.imgur.com/bCMLzxt.png";
     }
+
+    public Junior(String nickName){
+        this();
+        this.nickName = nickName;
+    }
+
 }

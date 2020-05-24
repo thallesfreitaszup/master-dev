@@ -1,31 +1,13 @@
 package masterdev.br.com.zup.model.card;
 
-import java.awt.*;
+
 
 public abstract class Card {
-    protected int mana;
+    protected int manaPoints;
     protected int damage;
     protected CardNameEnum name;
-    protected Image image;
+    protected String imgUrl;
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    protected String url;
-
-//    public abstract  Image uploadImage() throws MalformedURLException;
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
     public CardNameEnum getName() {
         return name;
     }
@@ -34,12 +16,20 @@ public abstract class Card {
         this.name = name;
     }
 
-    public int getMana(){
-        return this.mana;
+    public int getManaPoints() {
+        return manaPoints;
     }
 
-    public void setMana(int mana){
-        this.mana+=mana;
+    public void setManaPoints(int manaPoints) {
+        this.manaPoints = manaPoints;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public int getDamage(){
