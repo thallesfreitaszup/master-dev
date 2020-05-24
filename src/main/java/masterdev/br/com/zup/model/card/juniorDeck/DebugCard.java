@@ -7,7 +7,7 @@ import masterdev.br.com.zup.model.card.CardNameEnum;
 public class DebugCard extends Card {
     public DebugCard(){
         super();
-        this.mana = -6;
+        this.manaPoints = -6;
         this.damage = 8;
         this.name = CardNameEnum.DEBUG;
         this.imgUrl = "https://i.imgur.com/Kqk0XFo.png";
