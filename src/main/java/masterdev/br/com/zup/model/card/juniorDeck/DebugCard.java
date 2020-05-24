@@ -10,6 +10,7 @@ public class DebugCard extends Card {
         this.mana = -6;
         this.damage = 8;
         this.name = CardNameEnum.DEBUG;
+        this.imgUrl = "https://i.imgur.com/Kqk0XFo.png";
     }
 
 }

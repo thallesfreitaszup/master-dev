@@ -10,6 +10,7 @@ public class FrameworkCard extends Card {
         this.mana = -3;
         this.damage = 3;
         this.name = CardNameEnum.FRAMEWORK;
+        this.imgUrl = "https://i.imgur.com/vekhPge.png";
     }
 
 }

@@ -9,7 +9,7 @@ public class AntivirusCard extends Card {
         this.mana = 2;
         this.damage = 2;
         this.name = CardNameEnum.ANTIVIRUS;
-        this.url = "/images/0";
+        this.imgUrl = "https://i.imgur.com/3yV7yxV.png";
     }
 
 ////    @Override

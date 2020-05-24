@@ -9,6 +9,8 @@ public class ChangeExperiencePowerCard extends Card {
         this.mana = -4;
         this.damage = 6;
         this.name = CardNameEnum.CHANGEEXPERIENCEPOWER;
+        this.imgUrl =  "https://i.imgur.com/pTYltoR.png";
+
     }
 
 }

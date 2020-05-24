@@ -9,6 +9,7 @@ public class CoffeeCard extends Card {
         super();
         this.mana = +4;
         this.name = CardNameEnum.COFFEE;
+        this.imgUrl = "https://i.imgur.com/qCQdmvO.png";
     }
 
 }

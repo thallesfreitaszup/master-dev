@@ -9,6 +9,7 @@ public class CoffeeBreakCard extends Card {
         this.mana = 2;
         this.damage = 2;
         this.name = CardNameEnum.COFFEEBREAK;
+        this.imgUrl = "https://i.imgur.com/ZV79Cik.png";
     }
 
 }

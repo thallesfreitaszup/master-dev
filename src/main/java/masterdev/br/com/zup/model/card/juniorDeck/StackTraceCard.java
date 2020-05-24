@@ -9,6 +9,7 @@ public class StackTraceCard extends Card {
         this.mana = -5;
         this.damage = 7;
         this.name = CardNameEnum.STACKTRACE;
+        this.imgUrl = "https://i.imgur.com/NowVaoc.png";
     }
 
 }

@@ -3,10 +3,10 @@ package masterdev.br.com.zup.model.card;
 
 
 public abstract class Card {
-    protected int mana;
+    protected int manaPoints;
     protected int damage;
     protected CardNameEnum name;
-    protected String url;
+    protected String imgUrl;
 
     public CardNameEnum getName() {
         return name;
@@ -16,12 +16,20 @@ public abstract class Card {
         this.name = name;
     }
 
-    public int getMana(){
-        return this.mana;
+    public int getManaPoints() {
+        return manaPoints;
     }
 
-    public void setMana(int mana){
-        this.mana+=mana;
+    public void setManaPoints(int manaPoints) {
+        this.manaPoints = manaPoints;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public int getDamage(){

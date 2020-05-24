@@ -6,8 +6,9 @@ import masterdev.br.com.zup.model.card.CardNameEnum;
 
 public class SemTeste extends Card {
     public SemTeste() {
-        this.mana = -8;
-        this.damage = 6;
+        this.manaPoints = -6;
+        this.damage = 5;
         this.name = CardNameEnum.SEMTESTE;
+        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
     }
 }

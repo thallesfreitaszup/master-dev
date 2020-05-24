@@ -10,7 +10,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    protected int manaPoints;
+    protected int mana;
     protected int life;
     @Enumerated
     protected PlayerTypeEnum type;
@@ -18,9 +18,18 @@ public class Player {
     protected List<Card> cards;
 
     protected String nickName;
+    protected String imageUrl;
 
     public Player(){
 
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public long getId() {
@@ -47,12 +56,12 @@ public class Player {
         this.nickName = nickName;
     }
 
-    public int getManaPoints() {
-        return manaPoints;
+    public int getMana() {
+        return mana;
     }
 
-    public void setManaPoints(int manaPoints) {
-        this.manaPoints = manaPoints;
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
     public int getLife() {

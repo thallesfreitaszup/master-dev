@@ -10,6 +10,7 @@ public class TechLeadPowerCard extends Card {
         this.mana = -6;
         this.damage = 8;
         this.name = CardNameEnum.TECHLEADPOWER;
+        this.imgUrl = "https://i.imgur.com/y8xXHlS.png";
     }
 
 }

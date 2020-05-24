@@ -10,12 +10,13 @@ import java.util.Arrays;
 public class Junior extends Player {
 
     public Junior(){
-        this.manaPoints = 20;
+        this.mana = 20;
         this.life = 20;
         this.cards = Arrays.asList(new CoffeeCard(),new AntivirusCard(),new FrameworkCard(),new ChangeExperiencePowerCard(),new StackOverflowCard(),
                 new StackTraceCard(),new TechLeadPowerCard(), new CoffeeBreakCard());
 
         this.type = PlayerTypeEnum.JUNIOR;
+        this.imageUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
     public Junior(String nickName){

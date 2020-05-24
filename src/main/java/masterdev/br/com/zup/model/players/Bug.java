@@ -11,11 +11,12 @@ public class Bug extends Player {
 
 
     public Bug() {
-        this.manaPoints = 20;
+        this.mana = 20;
         this.life = 20;
         this.type = PlayerTypeEnum.BUG;
         this.cards = Arrays.asList(new GolpeNaoConsigo(),new CodigoMalEscrito(),new PerdeuDaily(),new EndPointErrado(),new PerdendoContato(),
                 new AdmTempo(),new Git(), new Pandemia(), new SemTeste());
+        this.imageUrl = "https://i.imgur.com/slkFCKv.png";
     }
 }
 
