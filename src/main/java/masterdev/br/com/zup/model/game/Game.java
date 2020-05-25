@@ -19,9 +19,11 @@ public class Game {
     @OneToMany(cascade=CascadeType.ALL)
     private List<Player> players;
 
-    private String status;
+    private GameStatusEnum status;
 
     private String winner;
+
+    private int move;
 
     public Game() {
 
@@ -29,7 +31,17 @@ public class Game {
 
     public Game(String nickName) {
 
-        players = Arrays.asList(new Junior(nickName),new Bug());
+        players = Arrays.asList(new Bug(), new Junior(nickName));
+        this.status = GameStatusEnum.RUNNING;
+        this.move = 1;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
     }
 
     public GameResponse toResponse() {
@@ -53,11 +65,11 @@ public class Game {
         this.players = players;
     }
 
-    public String getStatus() {
+    public GameStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(GameStatusEnum status) {
         this.status = status;
     }
 
