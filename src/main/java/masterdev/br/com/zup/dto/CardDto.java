@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.dto;
 
 public class CardDto {
+
     private String name;
 
     public String getName() {
@@ -10,4 +11,5 @@ public class CardDto {
     public void setName(String name) {
         this.name = name;
     }
+
 }

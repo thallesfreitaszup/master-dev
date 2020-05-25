@@ -12,36 +12,44 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 @Service
 public class UserService {
+
     UserRepository userRepository;
+
     @Autowired
-    UserService(UserRepository userRepository){
+    UserService(UserRepository userRepository) {
+
         this.userRepository = userRepository;
     }
 
-    public UserResponse saveUser(User user){
-        try{
+    public UserResponse saveUser(User user) {
+
+        try {
             return this.userRepository.save(user).toResponse();
-        }catch(Exception e ){
+        } catch(Exception e ) {
             throw e;
         }
     }
-    public Optional<User> findUser(User user){
-        try{
+
+    public Optional<User> findUser(User user) {
+
+        try {
             return this.userRepository.findByNickName(user.getNickName());
-        }catch(Exception e ){
+        } catch(Exception e ) {
             throw e;
         }
     }
+
     public User loginUser(UserRequest userRequest) throws NotFoundException {
+
         final User userDB = this.userRepository.findByNickName(userRequest.getNickName())
                 .orElseThrow(()-> new NotFoundException("Player não encontrado"));
-        if(userDB.matchPassword(userRequest.getPassword())){
+        if(userDB.matchPassword(userRequest.getPassword())) {
             return userDB;
-        }else{
+        } else {
             throw new BadCredentialsException("Nick ou senha inválido");
         }
     }
+
 }

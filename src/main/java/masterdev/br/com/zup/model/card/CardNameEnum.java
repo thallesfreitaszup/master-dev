@@ -8,9 +8,16 @@ public enum CardNameEnum {
     GOLPENAOCONSIGO("GOLPE NÃO CONSIGO"),CODIGOMALESCRITO("CODIGO MAL ESCRITO"),PERDEUADAILY("PERDEU A DAILY"),
     ENDPOINTBATENDOERRADO("ENDPOINTBATENDOERRADO"),PERDENDOCONTATO("PERDENDO CONTATO"),
     MAADMDETEMPO("MÁ ADMINISTRAÇÃO DE TEMPO"),GIT("GIT"),PANDEMIA("PAMDEMIA"),SEMTESTE("SEM TESTE");
+
     private String name;
 
     CardNameEnum(String name) {
+
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

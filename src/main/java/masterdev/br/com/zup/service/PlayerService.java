@@ -10,29 +10,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class PlayerService {
+
     PlayerRepository playerRepository;
+
     UserRepository userRepository;
+
     @Autowired
-    PlayerService(PlayerRepository playerRepository, UserRepository userRepository){
+    PlayerService(PlayerRepository playerRepository, UserRepository userRepository) {
+
         this.playerRepository = playerRepository;
         this.userRepository = userRepository;
     }
 
     public User loginUser(UserRequest userRequest) throws NotFoundException {
+
        final User userDB = this.userRepository.findByNickName(userRequest.getNickName())
            .orElseThrow(()-> new NotFoundException("Player não encontrado"));
-        if(userDB.matchPassword(userRequest.getPassword())){
+        if(userDB.matchPassword(userRequest.getPassword())) {
             return userDB;
-        }else{
+        } else {
             throw new BadCredentialsException("Nick ou senha inválido");
         }
     }
+
     public Player findPlayerById(long id) throws NotFoundException {
+
         return this.playerRepository.findById(id)
                 .orElseThrow(()-> new NotFoundException("Player não encontrado"));
-
     }
+
 }

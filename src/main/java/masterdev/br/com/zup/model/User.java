@@ -9,10 +9,13 @@ import javax.persistence.*;
 @Entity
 @Table(name="user_game")
 public class User {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+
     private String nickName;
+
     private String password;
 
     public User() {
@@ -20,18 +23,29 @@ public class User {
     }
 
     public User(String nickName, String password) {
+
         this.password = BcryptUtils.getInstance().hash(password);
         this.nickName = nickName;
-
     }
-    public long getId() {
-        return id;
+
+    public UserResponse toResponse() {
+
+        return new UserResponse(this.id,this.nickName);
     }
 
     public boolean matchPassword(String password) {
 
         return BcryptUtils.getInstance().matches(password,this.password);
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNickName() {
         return nickName;
     }
@@ -48,10 +62,4 @@ public class User {
         this.password = password;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-    public UserResponse toResponse(){
-        return new UserResponse(this.id,this.nickName);
-    }
 }

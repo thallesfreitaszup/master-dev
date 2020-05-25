@@ -7,9 +7,10 @@ import masterdev.br.com.zup.model.card.bugDeck.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CardFactory extends Factory  {
+public class CardFactory extends Factory {
 
     public  Card getCard(CardNameEnum cardNameEnum) throws Exception {
+
         switch (cardNameEnum) {
             case CHANGEEXPERIENCEPOWER:
                 return new ChangeExperiencePowerCard();
@@ -17,10 +18,8 @@ public class CardFactory extends Factory  {
                 return new AntivirusCard();
             case COFFEEBREAK:
                 return new CoffeeBreakCard();
-
             case COFFEE:
                 return new CoffeeCard();
-
             case DEBUG:
                 return new DebugCard();
             case FRAMEWORK:
@@ -53,4 +52,5 @@ public class CardFactory extends Factory  {
                 throw new Exception("Not found");
         }
     }
+
 }

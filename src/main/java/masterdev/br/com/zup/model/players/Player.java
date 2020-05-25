@@ -4,32 +4,31 @@ import masterdev.br.com.zup.model.card.Card;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Player {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     protected int mana;
+
     protected int life;
+
     @Enumerated
     protected PlayerTypeEnum type;
+
     @Transient
     protected List<Card> cards;
 
-    protected String nickName;
     protected String imageUrl;
 
-    public Player(){
+    protected String nickName;
 
-    }
+    public Player() {
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public long getId() {
@@ -38,22 +37,6 @@ public class Player {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public PlayerTypeEnum getType() {
-        return type;
-    }
-
-    public void setType(PlayerTypeEnum type) {
-        this.type = type;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public int getMana() {
@@ -72,12 +55,36 @@ public class Player {
         this.life = life;
     }
 
+    public PlayerTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(PlayerTypeEnum type) {
+        this.type = type;
+    }
+
     public List<Card> getCards() {
         return cards;
     }
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
 }

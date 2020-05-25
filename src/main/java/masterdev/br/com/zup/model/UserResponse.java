@@ -1,7 +1,9 @@
 package masterdev.br.com.zup.model;
 
 public class UserResponse {
+
     private  long id;
+
     private  String nickName;
 
     public UserResponse(long id, String nickName) {
@@ -25,4 +27,5 @@ public class UserResponse {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+
 }

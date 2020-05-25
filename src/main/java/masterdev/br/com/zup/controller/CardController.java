@@ -14,20 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class CardController {
 
     private Factory factory;
+
     @Autowired
     CardController(Factory factory){
+
         this.factory = factory;
     }
+
     @PostMapping
     public Card execute(CardDto cardDto) {
+
         Card card = null;
-        try{
+        try {
             card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
             // TO DO
-        }catch(Exception exception){
+        } catch(Exception exception){
             //to DO
             return card;
         }
         return card;
     }
+
 }

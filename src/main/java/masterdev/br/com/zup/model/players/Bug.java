@@ -5,12 +5,13 @@ import masterdev.br.com.zup.model.card.bugDeck.*;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Arrays;
+
 @Entity
 @DiscriminatorValue("BUG")
 public class Bug extends Player {
 
-
     public Bug() {
+
         this.mana = 20;
         this.life = 20;
         this.type = PlayerTypeEnum.BUG;

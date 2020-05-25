@@ -1,12 +1,32 @@
 package masterdev.br.com.zup.model.card;
 
-
-
 public abstract class Card {
+
     protected int manaPoints;
+
     protected int damage;
+
     protected CardNameEnum name;
+
+    protected String description;
+
     protected String imgUrl;
+
+    public int getManaPoints() {
+        return manaPoints;
+    }
+
+    public void setManaPoints(int manaPoints) {
+        this.manaPoints = manaPoints;
+    }
+
+    public int getDamage(){
+        return this.damage;
+    }
+
+    public void setDamage(int damage){
+        this.damage+=damage;
+    }
 
     public CardNameEnum getName() {
         return name;
@@ -16,12 +36,12 @@ public abstract class Card {
         this.name = name;
     }
 
-    public int getManaPoints() {
-        return manaPoints;
+    public String getDescription() {
+        return description;
     }
 
-    public void setManaPoints(int manaPoints) {
-        this.manaPoints = manaPoints;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImgUrl() {
@@ -32,11 +52,4 @@ public abstract class Card {
         this.imgUrl = imgUrl;
     }
 
-    public int getDamage(){
-        return this.damage;
-    }
-
-    public void setDamage(int damage){
-        this.damage+=damage;
-    }
 }

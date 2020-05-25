@@ -8,5 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {
+
     public Optional<Player> findByNickName(String nickName);
+
 }
