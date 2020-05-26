@@ -1,6 +1,6 @@
 package masterdev.br.com.zup.controller;
 
-import masterdev.br.com.zup.dto.GameResponse;
+import masterdev.br.com.zup.model.game.GameResponse;
 import masterdev.br.com.zup.model.User;
 import masterdev.br.com.zup.model.UserRequest;
 import masterdev.br.com.zup.model.game.Game;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 @RequestMapping("/user")
 @RestController
@@ -36,10 +35,10 @@ public class UserController {
         try {
               return userService.findUser(userRequest.toEntity())
               .map(user -> ResponseEntity.badRequest().build())
-              .orElseGet(() -> ResponseEntity.created(URI.create("/user/" + userRequest.getNickName())).body(userService.saveUser(userRequest.toEntity())) );
+              .orElseGet(() -> ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userRequest.toEntity())));
         } catch(Exception e ) {
             System.out.println(e);
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

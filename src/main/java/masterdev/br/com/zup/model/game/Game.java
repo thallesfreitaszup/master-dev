@@ -1,6 +1,5 @@
 package masterdev.br.com.zup.model.game;
 
-import masterdev.br.com.zup.dto.GameResponse;
 import masterdev.br.com.zup.model.players.Bug;
 import masterdev.br.com.zup.model.players.Junior;
 import masterdev.br.com.zup.model.players.Player;
@@ -34,14 +33,6 @@ public class Game {
         players = Arrays.asList(new Bug(), new Junior(nickName));
         this.status = GameStatusEnum.RUNNING;
         this.move = 1;
-    }
-
-    public int getMove() {
-        return move;
-    }
-
-    public void setMove(int move) {
-        this.move = move;
     }
 
     public GameResponse toResponse() {
@@ -79,6 +70,14 @@ public class Game {
 
     public void setWinner(String winner) {
         this.winner = winner;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
     }
 
 }

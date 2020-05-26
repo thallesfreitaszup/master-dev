@@ -1,7 +1,6 @@
-package masterdev.br.com.zup.dto;
+package masterdev.br.com.zup.model.game;
 
 import masterdev.br.com.zup.security.JwtUtils;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 
 public class GameResponse {
 
