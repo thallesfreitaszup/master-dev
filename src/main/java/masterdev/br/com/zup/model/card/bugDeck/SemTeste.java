@@ -12,7 +12,7 @@ public class SemTeste extends Card {
         this.damage = 5;
         this.name = CardNameEnum.SEMTESTE;
         this.description = "Não vai testar, é? Vou aparecer e você nem vai notar de onde eu cheguei!";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

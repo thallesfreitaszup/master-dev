@@ -12,7 +12,7 @@ public class Pandemia extends Card {
         this.damage = 6;
         this.name = CardNameEnum.PANDEMIA;
         this.description = "Já não basta os bugs, agora ainda tem vírus por ái! E é COVID? Aí danou!";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

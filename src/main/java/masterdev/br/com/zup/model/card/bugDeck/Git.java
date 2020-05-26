@@ -12,7 +12,7 @@ public class Git extends Card {
         this.damage = 2;
         this.name = CardNameEnum.GIT;
         this.description = "Fez as correções mas não commitou? Que mancada! Quebrou tudo o projeto";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

@@ -15,7 +15,7 @@ public class CodigoMalEscrito extends Card {
         this.juniorManaPoints = -2;
         this.name = CardNameEnum.CODIGOMALESCRITO;
         this.description = "Ixe, esse código não tá MAASSA não!";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
     public int getJuniorManaPoints() {

@@ -12,7 +12,7 @@ public class PerdeuDaily extends Card {
         this.damage = 5;
         this.name = CardNameEnum.PERDEUADAILY;
         this.description = "Foi juvena, e acabou perdendo a hora da daily, né? Sentou na graxa!";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

@@ -63,8 +63,10 @@ public class Player {
         this.type = type;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public List<Card> getCards()
+    {
+
+        return cards.subList(0,4);
     }
 
     public void setCards(List<Card> cards) {

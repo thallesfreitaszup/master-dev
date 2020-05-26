@@ -12,7 +12,7 @@ public class EndPointErrado extends Card {
         this.damage = 4;
         this.name = CardNameEnum.ENDPOINTBATENDOERRADO;
         this.description = "Óia o endpoint cheio das exceções mal tratadas aí!";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

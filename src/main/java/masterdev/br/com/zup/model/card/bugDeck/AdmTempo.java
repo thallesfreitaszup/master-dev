@@ -16,7 +16,7 @@ public class AdmTempo extends Card {
         this.name = CardNameEnum.MAADMDETEMPO;
         this.description = "O famoso 'deixa pra última hora', acabou ferrando o prazo de novo!";
 //        this.description = MessageFormat.format("Bug utilizou a carta {0} causando {1} de dano", this.name.getName(), this.damage);
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
 }

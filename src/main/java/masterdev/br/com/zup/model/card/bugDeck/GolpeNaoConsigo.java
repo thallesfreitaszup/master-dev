@@ -15,7 +15,7 @@ public class GolpeNaoConsigo extends Card {
         this.juniorManaPoints = -3;
         this.name = CardNameEnum.GOLPENAOCONSIGO;
         this.description = "Desiste aí! Você não vai conseguir resolver esse bug, né?";
-        this.imgUrl = "https://i.imgur.com/slkFCKv.png";
+        this.imgUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 
     public int getJuniorManaPoints() {
