@@ -2,10 +2,8 @@ package masterdev.br.com.zup.factory;
 
 import masterdev.br.com.zup.model.card.CardNameEnum;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 
 public class CardFactoryTest {
@@ -15,7 +13,7 @@ public class CardFactoryTest {
         this.cardFactory = new CardFactory();
     }
     @Test
-    public void testCreateCard() throws Exception {
+    public void it_should_create_card() throws Exception {
 
         Assertions.assertEquals(CardNameEnum.ANTIVIRUS.name(), cardFactory.getCard(CardNameEnum.ANTIVIRUS).getName().name());
         Assertions.assertEquals(CardNameEnum.CHANGEEXPERIENCEPOWER.name(), cardFactory.getCard(CardNameEnum.CHANGEEXPERIENCEPOWER).getName().name());

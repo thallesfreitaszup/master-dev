@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class CardTest {
 
     @Test
-    public void testCard() throws Exception {
+    public void it_should_return_correct_mana_damage_points() throws Exception {
         Assertions.assertEquals(2, new AntivirusCard().getManaPoints());
         Assertions.assertEquals(2, new AntivirusCard().getDamage());
         Assertions.assertEquals(4, new CoffeeCard().getManaPoints());
