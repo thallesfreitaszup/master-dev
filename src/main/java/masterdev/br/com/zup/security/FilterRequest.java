@@ -27,6 +27,11 @@ public class FilterRequest implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
+        if(httpRequest.getMethod().equals("OPTIONS")){
+            //cors check
+            chain.doFilter(request, response);
+            return;
+        }
         if (httpRequest.getServletPath().startsWith("/user")) {
             // requisição para criar player
             chain.doFilter(request, response);

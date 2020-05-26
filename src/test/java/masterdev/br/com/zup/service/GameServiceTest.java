@@ -1,6 +1,6 @@
 package masterdev.br.com.zup.service;
 
-import masterdev.br.com.zup.model.User;
+import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.repository.GameRepository;
 import org.junit.jupiter.api.Assertions;

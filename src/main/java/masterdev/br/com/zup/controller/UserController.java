@@ -1,8 +1,8 @@
 package masterdev.br.com.zup.controller;
 
 import masterdev.br.com.zup.model.game.GameResponse;
-import masterdev.br.com.zup.model.User;
-import masterdev.br.com.zup.model.UserRequest;
+import masterdev.br.com.zup.model.user.User;
+import masterdev.br.com.zup.model.user.UserRequest;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.service.GameService;
 import masterdev.br.com.zup.service.UserService;

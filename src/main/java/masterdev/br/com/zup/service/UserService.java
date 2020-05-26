@@ -1,10 +1,9 @@
 package masterdev.br.com.zup.service;
 
 import javassist.NotFoundException;
-import masterdev.br.com.zup.model.User;
-import masterdev.br.com.zup.model.UserRequest;
-import masterdev.br.com.zup.model.UserResponse;
-import masterdev.br.com.zup.model.players.Player;
+import masterdev.br.com.zup.model.user.User;
+import masterdev.br.com.zup.model.user.UserRequest;
+import masterdev.br.com.zup.model.user.UserResponse;
 import masterdev.br.com.zup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;

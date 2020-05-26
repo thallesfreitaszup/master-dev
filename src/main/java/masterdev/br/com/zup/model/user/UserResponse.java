@@ -1,4 +1,4 @@
-package masterdev.br.com.zup.model;
+package masterdev.br.com.zup.model.user;
 
 public class UserResponse {
 

@@ -1,8 +1,6 @@
-package masterdev.br.com.zup.model;
+package masterdev.br.com.zup.model.user;
 
-import masterdev.br.com.zup.model.players.Player;
 import masterdev.br.com.zup.security.BcryptUtils;
-import masterdev.br.com.zup.security.JwtUtils;
 
 import javax.persistence.*;
 
