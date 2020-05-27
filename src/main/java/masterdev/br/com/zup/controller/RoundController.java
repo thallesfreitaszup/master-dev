@@ -8,6 +8,8 @@ import masterdev.br.com.zup.model.players.PlayerTypeEnum;
 import masterdev.br.com.zup.service.GameService;
 import masterdev.br.com.zup.service.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,60 +31,54 @@ public class RoundController {
     }
 
     @PostMapping (path = "/move")
-    public Game moveUpdate(@RequestAttribute long idGame, @RequestBody RoundDto roundDto) {
+    public ResponseEntity<Game> moveUpdate(@RequestAttribute long idGame, @RequestBody RoundDto roundDto) {
         Game game = null;
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
             if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
                 try {
-                    return roundService.roundJuniorEffect(roundDto, game);
+                    return ResponseEntity.status(HttpStatus.OK).body(roundService.roundJuniorEffect(roundDto, game));
                 } catch (Exception exception) {
-                    // TODO ResponseEntity com HttpStatus
-                    return null;
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                 }
             } else if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
                 try {
-                    return roundService.roundBugEffect(roundDto, game);
+                    return ResponseEntity.status(HttpStatus.OK).body(roundService.roundBugEffect(roundDto, game));
                 } catch (Exception exception) {
-                    // TODO ResponseEntity com HttpStatus
-                    return null;
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                 }
             }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        // TODO ResponseEntity com HttpStatus
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PostMapping (path = "/skipround")
-    public Game skipUpdate(@RequestAttribute long idGame) {
+    public ResponseEntity<Game> skipUpdate(@RequestAttribute long idGame) {
         Game game = null;
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
             try {
-                return roundService.skipEffect(game);
+                return ResponseEntity.status(HttpStatus.OK).body(roundService.skipEffect(game));
             } catch (Exception exception) {
-                // TODO ResponseEntity com HttpStatus
-                return null;
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
-        // TODO ResponseEntity com HttpStatus
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PostMapping (path = "/finishround")
-    public Game finishRoundUpdate(@RequestAttribute long idGame, @RequestBody CardHandDto cardHandDto) {
+    public ResponseEntity<Game> finishRoundUpdate(@RequestAttribute long idGame, @RequestBody CardHandDto cardHandDto) {
         Game game = null;
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
             try {
-                return roundService.finishRoundEffect(game, cardHandDto.getBugHand(), cardHandDto.getJuniorHand());
+                return ResponseEntity.status(HttpStatus.OK).body(roundService.finishRoundEffect(game, cardHandDto.getBugHand(), cardHandDto.getJuniorHand()));
             } catch (Exception exception) {
-                // TODO ResponseEntity com HttpStatus
-                return null;
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
-        // TODO ResponseEntity com HttpStatus
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }
