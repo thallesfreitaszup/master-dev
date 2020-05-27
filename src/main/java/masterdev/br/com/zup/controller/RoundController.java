@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.controller;
 
-import masterdev.br.com.zup.dto.CardDto;
+import masterdev.br.com.zup.dto.CardHandDto;
+import masterdev.br.com.zup.dto.RoundDto;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.model.players.PlayerTypeEnum;
@@ -28,20 +29,20 @@ public class RoundController {
     }
 
     @PostMapping (path = "/move")
-    public Game moveUpdate(@RequestAttribute long idGame, CardDto cardDto, String playerType) {
+    public Game moveUpdate(@RequestAttribute long idGame, @RequestBody RoundDto roundDto) {
         Game game = null;
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
-            if (playerType.equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
+            if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
                 try {
-                    return roundService.roundJuniorEffect(cardDto, game);
+                    return roundService.roundJuniorEffect(roundDto, game);
                 } catch (Exception exception) {
                     // TODO ResponseEntity com HttpStatus
                     return null;
                 }
-            } else if (playerType.equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
+            } else if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
                 try {
-                    return roundService.roundBugEffect(cardDto, game);
+                    return roundService.roundBugEffect(roundDto, game);
                 } catch (Exception exception) {
                     // TODO ResponseEntity com HttpStatus
                     return null;
@@ -69,12 +70,12 @@ public class RoundController {
     }
 
     @PostMapping (path = "/finishround")
-    public Game finishRoundUpdate(@RequestAttribute long idGame, List<Card> bugHand, List<Card> juniorHand) {
+    public Game finishRoundUpdate(@RequestAttribute long idGame, @RequestBody CardHandDto cardHandDto) {
         Game game = null;
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
             try {
-                return roundService.finishRoundEffect(game, bugHand, juniorHand);
+                return roundService.finishRoundEffect(game, cardHandDto.getBugHand(), cardHandDto.getJuniorHand());
             } catch (Exception exception) {
                 // TODO ResponseEntity com HttpStatus
                 return null;

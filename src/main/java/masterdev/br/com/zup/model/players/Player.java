@@ -1,5 +1,6 @@
 package masterdev.br.com.zup.model.players;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import masterdev.br.com.zup.model.card.Card;
 
 import javax.persistence.*;
@@ -18,12 +19,12 @@ public class Player {
     protected int mana;
 
     protected int life;
-
+    @Transient
     protected List<Card> hand;
 
     @Enumerated
     protected PlayerTypeEnum type;
-
+    @JsonIgnore
     @Transient
     protected List<Card> cards;
 

@@ -1,6 +1,6 @@
 package masterdev.br.com.zup.service;
 
-import masterdev.br.com.zup.dto.CardDto;
+import masterdev.br.com.zup.dto.RoundDto;
 import masterdev.br.com.zup.factory.Factory;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
@@ -26,7 +26,7 @@ public class RoundService {
         this.gameRepository = gameRepository;
     }
 
-    public Game roundJuniorEffect(CardDto cardDto, Game game) throws Exception {
+    public Game roundJuniorEffect(RoundDto cardDto, Game game) throws Exception {
 
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
@@ -41,7 +41,7 @@ public class RoundService {
         return game;
     }
 
-    public Game roundBugEffect(CardDto cardDto, Game game) throws Exception {
+    public Game roundBugEffect(RoundDto cardDto, Game game) throws Exception {
 
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
