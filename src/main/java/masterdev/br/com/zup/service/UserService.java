@@ -51,4 +51,15 @@ public class UserService {
         }
     }
 
+    public void updateWinScore(String nickName) {
+        this.userRepository.findByNickName(nickName).map(
+          user -> user.updateWins()
+        ).map(user -> userRepository.save(user));
+    }
+
+    public void updateLossScore(String nickName) {
+        this.userRepository.findByNickName(nickName).map(
+                user -> user.updateLoss()
+        ).map(user -> userRepository.save(user));
+    }
 }

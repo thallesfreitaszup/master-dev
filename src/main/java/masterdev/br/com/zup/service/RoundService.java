@@ -5,6 +5,7 @@ import masterdev.br.com.zup.factory.Factory;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
 import masterdev.br.com.zup.model.game.Game;
+import masterdev.br.com.zup.model.game.GameStatusEnum;
 import masterdev.br.com.zup.model.players.PlayerTypeEnum;
 import masterdev.br.com.zup.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,14 @@ public class RoundService {
 
     private GameRepository gameRepository;
 
+    private UserService userService;
+
     @Autowired
-    RoundService(Factory factory, GameRepository gameRepository) {
+    RoundService(Factory factory, GameRepository gameRepository,UserService userService) {
 
         this.factory = factory;
         this.gameRepository = gameRepository;
+        this.userService = userService;
     }
 
     public Game roundJuniorEffect(RoundDto cardDto, Game game) throws Exception {
@@ -31,8 +35,11 @@ public class RoundService {
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
         game.getBug().damageEffect(card);
-        if (game.getBug().isDead())
+        if (game.getBug().isDead()) {
             game.setWinner(PlayerTypeEnum.JUNIOR.toString());
+            game.setStatus(GameStatusEnum.FINISHED);
+            userService.updateWinScore(game.getJunior().getNickName());
+        }
         game.getJunior().manaEffect(card);
         game.setMove(game.getMove() + 1);
 
@@ -46,8 +53,11 @@ public class RoundService {
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
         game.getJunior().damageEffect(card);
-        if (game.getJunior().isDead())
+        if (game.getJunior().isDead()){
             game.setWinner(PlayerTypeEnum.BUG.toString());
+            game.setStatus(GameStatusEnum.FINISHED);
+            userService.updateLossScore(game.getJunior().getNickName());
+        }
         game.getBug().manaEffect(card);
         game.setMove(game.getMove() + 1);
 
