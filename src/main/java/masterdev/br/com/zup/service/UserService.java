@@ -57,7 +57,7 @@ public class UserService {
         Optional<User> user = this.userRepository.findByNickName(nickName);
 
         if(user.isPresent()) {
-             return new UserData(user.get().getId(), user.get().getNickName(), 0, 0);
+             return new UserData(user.get().getId(), user.get().getNickName(), user.get().getWins(), user.get().getLoss());
         }else {
             throw new NotFoundException("Player não encontrado");
         }
