@@ -1,5 +1,7 @@
 package masterdev.br.com.zup.controller;
 
+import javassist.NotFoundException;
+import masterdev.br.com.zup.dto.UserData;
 import masterdev.br.com.zup.model.game.GameResponse;
 import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.user.UserRequest;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 @RequestMapping("/user")
 @RestController
@@ -52,6 +55,16 @@ public class UserController {
         } catch(Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/{nickName}")
+    public ResponseEntity<UserData> userData(@PathVariable String nickName){
+        try{
+            return ResponseEntity.ok().body(userService.userProfile(nickName));
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 

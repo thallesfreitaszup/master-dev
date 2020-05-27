@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.service;
 
 import javassist.NotFoundException;
+import masterdev.br.com.zup.dto.UserData;
 import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.user.UserRequest;
 import masterdev.br.com.zup.model.user.UserResponse;
@@ -49,6 +50,18 @@ public class UserService {
         } else {
             throw new BadCredentialsException("Nick ou senha inválido");
         }
+    }
+
+    public UserData userProfile(String nickName) throws NotFoundException {
+
+        Optional<User> user = this.userRepository.findByNickName(nickName);
+
+        if(user.isPresent()) {
+             return new UserData(user.get().getId(), user.get().getNickName(), 0, 0);
+        }else {
+            throw new NotFoundException("Player não encontrado");
+        }
+
     }
 
 }
