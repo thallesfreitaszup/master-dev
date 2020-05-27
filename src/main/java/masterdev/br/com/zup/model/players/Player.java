@@ -38,7 +38,6 @@ public class Player {
 
     public List<Card> shuffleInitialHand() {
 
-        Collections.shuffle(this.cards);
         return this.hand = this.cards.subList(0,4);
     }
 
