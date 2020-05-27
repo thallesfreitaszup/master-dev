@@ -83,4 +83,15 @@ public class RoundService {
         return game;
     }
 
+    public Game finishRoundEffect(Game game, List<Card> bugHand, List<Card> juniorHand) {
+
+        List bugCards = game.getPlayers().get(0).getCards();
+
+        for (Card pos : bugHand) ;
+
+        List juniorCards = game.getPlayers().get(1).getCards();
+
+        return game;
+    }
+
 }

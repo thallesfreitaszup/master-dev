@@ -1,12 +1,15 @@
 package masterdev.br.com.zup.controller;
 
 import masterdev.br.com.zup.dto.CardDto;
+import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.model.players.PlayerTypeEnum;
 import masterdev.br.com.zup.service.GameService;
 import masterdev.br.com.zup.service.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -25,7 +28,7 @@ public class RoundController {
     }
 
     @PostMapping (path = "/move")
-    public Game updateMove(@RequestAttribute long idGame, CardDto cardDto, String playerType) {
+    public Game moveUpdate(@RequestAttribute long idGame, CardDto cardDto, String playerType) {
         Game game = gameService.findGameById(idGame).get();
         if (playerType.equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
             try {
@@ -47,10 +50,21 @@ public class RoundController {
     }
 
     @PostMapping (path = "/skipround")
-    public Game updateSkip(@RequestAttribute long idGame) {
+    public Game skipUpdate(@RequestAttribute long idGame) {
         Game game = gameService.findGameById(idGame).get();
         try {
             return roundService.skipEffect(game);
+        } catch (Exception exception) {
+            // TODO ResponseEntity com HttpStatus
+            return null;
+        }
+    }
+
+    @PostMapping (path = "/finishround")
+    public Game finishRoundUpdate(@RequestAttribute long idGame, List<Card> bugHand, List<Card> juniorHand) {
+        Game game = gameService.findGameById(idGame).get();
+        try {
+            return roundService.finishRoundEffect(game, bugHand, juniorHand);
         } catch (Exception exception) {
             // TODO ResponseEntity com HttpStatus
             return null;
