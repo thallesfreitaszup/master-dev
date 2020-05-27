@@ -19,5 +19,6 @@ public class Bug extends Player {
                 new AdmTempo(),new Git(), new Pandemia(), new SemTeste());
         this.imageUrl = "https://i.imgur.com/slkFCKv.png";
     }
+
 }
 
