@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.service;
 
 import javassist.NotFoundException;
+import masterdev.br.com.zup.dto.UserData;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.user.UserRequest;
@@ -27,6 +28,7 @@ public class UserServiceTest {
 
     @InjectMocks
     UserService userService;
+
 
     @Test
     public void it_should_find_user(){
@@ -86,5 +88,22 @@ public class UserServiceTest {
         Assertions.assertThrows(NotFoundException.class,()-> userService.loginUser(userRequest));
     }
 
+    @Test
+    public void it_should_get_User_data_information() throws NotFoundException {
+        User user = new User();
+        user.setId(1L);
+        user.setNickName("nickName");
+        when(this.userRepository.findByNickName(user.getNickName())).thenReturn(Optional.of(user));
+        UserData userdata = this.userService.userProfile(user.getNickName());
+        Assertions.assertEquals(user.getId(),userdata.getId());
+    }
 
+    @Test
+    public void it_should_get_User_data_information_notFound(){
+        User user = new User();
+        user.setId(1L);
+        user.setNickName("nickName");
+        when(this.userRepository.findByNickName(user.getNickName())).thenReturn(Optional.empty());
+        Assertions.assertThrows(NotFoundException.class,()->this.userService.userProfile(user.getNickName()));
+    }
 }
