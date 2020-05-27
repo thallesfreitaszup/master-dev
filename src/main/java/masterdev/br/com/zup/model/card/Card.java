@@ -11,7 +11,7 @@ import masterdev.br.com.zup.model.card.juniorDeck.*;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AntivirusCard.class, name = "ANTIVIRUS"),
         @JsonSubTypes.Type(value = CoffeeBreakCard.class, name = "COFFEEBREAK"),
-        @JsonSubTypes.Type(value = CoffeeCard.class, name = "COFFEECARD"),
+        @JsonSubTypes.Type(value = CoffeeCard.class, name = "COFFEE"),
         @JsonSubTypes.Type(value = DebugCard.class, name = "DEBUG"),
         @JsonSubTypes.Type(value = StackOverflowCard.class, name = "STACKOVERFLOW"),
         @JsonSubTypes.Type(value = StackTraceCard.class, name = "STACKTRACE"),
