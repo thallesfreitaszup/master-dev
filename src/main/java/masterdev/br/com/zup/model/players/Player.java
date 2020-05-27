@@ -44,8 +44,7 @@ public class Player {
     public void shuffleUsedCard(List<Card> cardHand) {
 
         List<Card> filtered = this.cards.stream().filter(card -> !cardHand.contains(card)).collect(Collectors.toList());
-        Collections.shuffle(filtered);
-        cardHand.add(filtered.get(0));
+        cardHand.add(filtered.get((int) (Math.random() * 6)));
         this.hand = cardHand;
     }
 
