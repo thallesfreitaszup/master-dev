@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name="user_game")
 public class User {
 
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
@@ -16,8 +17,28 @@ public class User {
 
     private String password;
 
+    private int wins;
+
+    private int loss;
+
     public User() {
 
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoss() {
+        return loss;
+    }
+
+    public void setLoss(int loss) {
+        this.loss = loss;
     }
 
     public User(String nickName, String password) {
@@ -59,5 +80,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public User updateWins(){
+        this.wins++;
+        return this;
+    }
+
+    public User updateLoss(){
+        this.loss++;
+        return this;
+    }
+
 
 }

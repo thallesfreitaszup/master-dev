@@ -17,6 +17,7 @@ public class Junior extends Player {
         this.type = PlayerTypeEnum.JUNIOR;
         this.cards = Arrays.asList(new CoffeeCard(),new AntivirusCard(),new FrameworkCard(),new ChangeExperiencePowerCard(),new StackOverflowCard(),
                 new StackTraceCard(),new TechLeadPowerCard(), new CoffeeBreakCard());
+        this.hand = shuffleInitialHand();
         this.imageUrl = "https://i.imgur.com/bCMLzxt.png";
     }
 

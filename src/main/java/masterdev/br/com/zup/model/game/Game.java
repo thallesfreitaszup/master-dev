@@ -1,5 +1,6 @@
 package masterdev.br.com.zup.model.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import masterdev.br.com.zup.model.players.Bug;
 import masterdev.br.com.zup.model.players.Junior;
 import masterdev.br.com.zup.model.players.Player;
@@ -33,6 +34,16 @@ public class Game {
         players = Arrays.asList(new Bug(), new Junior(nickName));
         this.status = GameStatusEnum.RUNNING;
         this.move = 1;
+    }
+    @JsonIgnore
+    public Player getBug() {
+
+        return this.players.get(0);
+    }
+    @JsonIgnore
+    public Player getJunior() {
+
+        return this.players.get(1);
     }
 
     public GameResponse toResponse() {
