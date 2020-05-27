@@ -35,6 +35,16 @@ public class Game {
         this.move = 1;
     }
 
+    public Player getBug() {
+
+        return this.players.get(0);
+    }
+
+    public Player getJunior() {
+
+        return this.players.get(1);
+    }
+
     public GameResponse toResponse() {
 
         return new GameResponse(this.id);
