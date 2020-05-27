@@ -29,17 +29,36 @@ public class RoundController {
 
     @PostMapping (path = "/move")
     public Game moveUpdate(@RequestAttribute long idGame, CardDto cardDto, String playerType) {
-        Game game = gameService.findGameById(idGame).get();
-        if (playerType.equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
-            try {
-                return roundService.roundPlayerEffect(cardDto, game);
-            } catch (Exception exception) {
-                // TODO ResponseEntity com HttpStatus
-                return null;
+        Game game = null;
+        if (gameService.findGameById(idGame).isPresent()) {
+            game = gameService.findGameById(idGame).get();
+            if (playerType.equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
+                try {
+                    return roundService.roundJuniorEffect(cardDto, game);
+                } catch (Exception exception) {
+                    // TODO ResponseEntity com HttpStatus
+                    return null;
+                }
+            } else if (playerType.equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
+                try {
+                    return roundService.roundBugEffect(cardDto, game);
+                } catch (Exception exception) {
+                    // TODO ResponseEntity com HttpStatus
+                    return null;
+                }
             }
-        } else if (playerType.equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
+        }
+        // TODO ResponseEntity com HttpStatus
+        return null;
+    }
+
+    @PostMapping (path = "/skipround")
+    public Game skipUpdate(@RequestAttribute long idGame) {
+        Game game = null;
+        if (gameService.findGameById(idGame).isPresent()) {
+            game = gameService.findGameById(idGame).get();
             try {
-                return roundService.roundBugEffect(cardDto, game);
+                return roundService.skipEffect(game);
             } catch (Exception exception) {
                 // TODO ResponseEntity com HttpStatus
                 return null;
@@ -49,26 +68,20 @@ public class RoundController {
         return null;
     }
 
-    @PostMapping (path = "/skipround")
-    public Game skipUpdate(@RequestAttribute long idGame) {
-        Game game = gameService.findGameById(idGame).get();
-        try {
-            return roundService.skipEffect(game);
-        } catch (Exception exception) {
-            // TODO ResponseEntity com HttpStatus
-            return null;
-        }
-    }
-
     @PostMapping (path = "/finishround")
     public Game finishRoundUpdate(@RequestAttribute long idGame, List<Card> bugHand, List<Card> juniorHand) {
-        Game game = gameService.findGameById(idGame).get();
-        try {
-            return roundService.finishRoundEffect(game, bugHand, juniorHand);
-        } catch (Exception exception) {
-            // TODO ResponseEntity com HttpStatus
-            return null;
+        Game game = null;
+        if (gameService.findGameById(idGame).isPresent()) {
+            game = gameService.findGameById(idGame).get();
+            try {
+                return roundService.finishRoundEffect(game, bugHand, juniorHand);
+            } catch (Exception exception) {
+                // TODO ResponseEntity com HttpStatus
+                return null;
+            }
         }
+        // TODO ResponseEntity com HttpStatus
+        return null;
     }
 
 }

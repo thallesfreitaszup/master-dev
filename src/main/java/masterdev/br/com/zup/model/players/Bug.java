@@ -14,6 +14,7 @@ public class Bug extends Player {
 
         this.mana = 20;
         this.life = 20;
+        this.hand = shuffleInitialHand();
         this.type = PlayerTypeEnum.BUG;
         this.cards = Arrays.asList(new GolpeNaoConsigo(),new CodigoMalEscrito(),new PerdeuDaily(),new EndPointErrado(),new PerdendoContato(),
                 new AdmTempo(),new Git(), new Pandemia(), new SemTeste());

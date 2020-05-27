@@ -5,12 +5,11 @@ import masterdev.br.com.zup.factory.Factory;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
 import masterdev.br.com.zup.model.game.Game;
-import masterdev.br.com.zup.model.players.Player;
 import masterdev.br.com.zup.model.players.PlayerTypeEnum;
+import masterdev.br.com.zup.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,34 +17,26 @@ public class RoundService {
 
     private Factory factory;
 
+    private GameRepository gameRepository;
+
     @Autowired
-    RoundService(Factory factory) {
+    RoundService(Factory factory, GameRepository gameRepository) {
 
         this.factory = factory;
+        this.gameRepository = gameRepository;
     }
 
-    public Game roundPlayerEffect(CardDto cardDto, Game game) throws Exception {
+    public Game roundJuniorEffect(CardDto cardDto, Game game) throws Exception {
 
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
-        int lifeBug = game.getPlayers().get(0).getLife() - card.getDamage();
-        Player bug = game.getPlayers().get(0);
-        bug.setLife(lifeBug);
-        if (lifeBug <= 0)
+        game.getBug().damageEffect(card);
+        if (game.getBug().isDead())
             game.setWinner(PlayerTypeEnum.JUNIOR.toString());
+        game.getJunior().manaEffect(card);
+        game.setMove(game.getMove() + 1);
 
-        int manaJunior = game.getPlayers().get(1).getMana() + card.getManaPoints();
-        Player junior = game.getPlayers().get(1);
-        junior.setMana(manaJunior);
-
-        List<Player> players = new ArrayList<>();
-        players.add(bug);
-        players.add(junior);
-        game.setPlayers(players);
-
-        int move = game.getMove();
-        move ++;
-        game.setMove(move);
+        gameRepository.save(game);
 
         return game;
     }
@@ -54,42 +45,34 @@ public class RoundService {
 
         Card card = factory.getCard(CardNameEnum.valueOf(cardDto.getName()));
 
-        int lifeJunior = game.getPlayers().get(1).getLife() - card.getDamage();
-        Player junior = game.getPlayers().get(1);
-        junior.setLife(lifeJunior);
+        game.getJunior().damageEffect(card);
+        if (game.getJunior().isDead())
+            game.setWinner(PlayerTypeEnum.BUG.toString());
+        game.getBug().manaEffect(card);
+        game.setMove(game.getMove() + 1);
 
-        int manaBug = game.getPlayers().get(0).getMana() + card.getManaPoints();
-        Player bug = game.getPlayers().get(0);
-        bug.setMana(manaBug);
-
-        List<Player> players = new ArrayList<>();
-        players.add(junior);
-        players.add(bug);
-        game.setPlayers(players);
-
-        int move = game.getMove();
-        move ++;
-        game.setMove(move);
+        gameRepository.save(game);
 
         return game;
     }
 
     public Game skipEffect(Game game) {
 
-        int move = game.getMove();
-        move ++;
-        game.setMove(move);
+        game.setMove(game.getMove() + 1);
+
+        gameRepository.save(game);
 
         return game;
     }
 
     public Game finishRoundEffect(Game game, List<Card> bugHand, List<Card> juniorHand) {
 
-        List bugCards = game.getPlayers().get(0).getCards();
+        game.getBug().shuffleUsedCard(bugHand);
+        game.getBug().setMana(game.getBug().getMana() + 2);
+        game.getJunior().shuffleUsedCard(juniorHand);
+        game.getJunior().setMana(game.getJunior().getMana() + 2);
 
-        for (Card pos : bugHand) ;
-
-        List juniorCards = game.getPlayers().get(1).getCards();
+        gameRepository.save(game);
 
         return game;
     }
