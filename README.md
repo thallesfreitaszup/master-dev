@@ -1,9 +1,9 @@
 # master-dev
-Pré requisitos para rodar a aplicação 
+Pré requisitos para iniciar  a aplicação 
 
-1-Maven 
+1-Maven ou IDE(Intellij/Eclipse)
 
-2-Docker 
+2-Docker ou SGBD Postgres
 
 Instruções
 
