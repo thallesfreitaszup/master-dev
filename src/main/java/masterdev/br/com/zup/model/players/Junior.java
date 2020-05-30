@@ -17,13 +17,13 @@ public class Junior extends Player {
         this.type = PlayerTypeEnum.JUNIOR;
         this.cards = Arrays.asList(new CoffeeCard(),new AntivirusCard(),new FrameworkCard(),new ChangeExperiencePowerCard(),new StackOverflowCard(),
                 new StackTraceCard(),new TechLeadPowerCard(), new CoffeeBreakCard());
-
-        this.hand = shuffleInitialHand();
+        if(hand == null){
+            hand = shuffleInitialHand();
+        }
         this.imageUrl = "https://i.imgur.com/P9DAD9G.png";
     }
 
-    public Junior(String nickName) {
-
+    public Junior(String nickName,int move) {
         this();
         this.nickName = nickName;
     }

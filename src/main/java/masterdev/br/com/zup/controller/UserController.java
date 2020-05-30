@@ -2,10 +2,12 @@ package masterdev.br.com.zup.controller;
 
 import javassist.NotFoundException;
 import masterdev.br.com.zup.dto.UserData;
-import masterdev.br.com.zup.model.game.GameResponse;
+import masterdev.br.com.zup.log.LogGame;
+import masterdev.br.com.zup.model.game.LoginResponse;
 import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.user.UserRequest;
 import masterdev.br.com.zup.model.game.Game;
+import masterdev.br.com.zup.security.JwtUtils;
 import masterdev.br.com.zup.service.GameService;
 import masterdev.br.com.zup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 @RequestMapping("/user")
 @RestController
@@ -39,31 +40,31 @@ public class UserController {
               return userService.findUser(userRequest.toEntity())
               .map(user -> ResponseEntity.badRequest().build())
               .orElseGet(() -> ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userRequest.toEntity())));
-        } catch(Exception e ) {
-            System.out.println(e);
+        } catch(Exception exception ) {
+            new LogGame().error(exception.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<GameResponse> loginUser(@RequestBody @Valid UserRequest userRequest) {
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody @Valid UserRequest userRequest) {
 
         try {
             final User user = userService.loginUser(userRequest);
             Game game = this.gameService.findOrCreateGame(user);
-            return ResponseEntity.ok().body(game.toResponse());
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
+            return ResponseEntity.ok().body( new LoginResponse(user.getId(), JwtUtils.createJWT(game.getId())));
+        } catch(Exception exception) {
+            new LogGame().error(exception.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @GetMapping("/{nickName}")
-    public ResponseEntity<UserData> userData(@PathVariable String nickName){
+    @GetMapping("/{id}")
+    public ResponseEntity<UserData> userData(@PathVariable long id){
         try{
-            return ResponseEntity.ok().body(userService.userProfile(nickName));
-        } catch (NotFoundException e) {
-            System.out.println(e.getMessage());
+            return ResponseEntity.ok().body(userService.userProfile(id));
+        } catch (NotFoundException exception) {
+            new LogGame().error(exception.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

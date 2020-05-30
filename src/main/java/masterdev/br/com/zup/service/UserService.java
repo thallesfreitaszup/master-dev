@@ -52,9 +52,9 @@ public class UserService {
         }
     }
 
-    public UserData userProfile(String nickName) throws NotFoundException {
+    public UserData userProfile(long id) throws NotFoundException {
 
-        Optional<User> user = this.userRepository.findByNickName(nickName);
+        Optional<User> user = this.userRepository.findById(id);
 
         if(user.isPresent()) {
              return new UserData(user.get().getId(), user.get().getNickName(), user.get().getWins(), user.get().getLoss());

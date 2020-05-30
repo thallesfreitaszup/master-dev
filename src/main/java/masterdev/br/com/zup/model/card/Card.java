@@ -1,13 +1,16 @@
 package masterdev.br.com.zup.model.card;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import masterdev.br.com.zup.model.card.bugDeck.*;
 import masterdev.br.com.zup.model.card.juniorDeck.*;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property ="name", include = JsonTypeInfo.As.PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property ="name", include = JsonTypeInfo.As.EXISTING_PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AntivirusCard.class, name = "ANTIVIRUS"),
         @JsonSubTypes.Type(value = CoffeeBreakCard.class, name = "COFFEEBREAK"),
@@ -33,11 +36,31 @@ public abstract class Card {
 
     protected int manaPoints;
 
+    protected boolean selected;
+
     protected int damage;
+    @JsonIgnore
+    protected int manaJuniorPoints;
+
+
 
     protected CardNameEnum name;
 
     protected String description;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return
+            name.equals(card.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(manaPoints, damage, name, description, imgUrl);
+    }
 
     protected String imgUrl;
 
@@ -49,12 +72,20 @@ public abstract class Card {
         this.manaPoints = manaPoints;
     }
 
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
     public int getDamage(){
         return this.damage;
     }
 
     public void setDamage(int damage){
-        this.damage+=damage;
+        this.damage =damage;
     }
 
     public CardNameEnum getName() {
@@ -81,4 +112,11 @@ public abstract class Card {
         this.imgUrl = imgUrl;
     }
 
+    public void setManaJuniorPoints(int manaJuniorPoints) {
+        this.manaJuniorPoints = manaJuniorPoints;
+    }
+
+    public int getManaJuniorPoints() {
+        return manaJuniorPoints;
+    }
 }

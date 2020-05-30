@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import masterdev.br.com.zup.model.card.Card;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,6 @@ import java.util.stream.Collectors;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Player {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -19,15 +19,15 @@ public class Player {
     protected int mana;
 
     protected int life;
+
     @Transient
     protected List<Card> hand;
-
     @Enumerated
     protected PlayerTypeEnum type;
+
     @JsonIgnore
     @Transient
     protected List<Card> cards;
-
     protected String imageUrl;
 
     protected String nickName;
@@ -36,15 +36,22 @@ public class Player {
 
     }
 
+    public  void setUsedCard(Card cardCompare){
+        Card cardFiltered = this.cards.stream().filter(card -> card.equals(cardCompare)).findFirst().get();
+
+        cardFiltered.setSelected(true);
+    }
     public List<Card> shuffleInitialHand() {
 
         return this.hand = this.cards.subList(0,4);
     }
-
     public void shuffleUsedCard(List<Card> cardHand) {
 
         List<Card> filtered = this.cards.stream().filter(card -> !cardHand.contains(card)).collect(Collectors.toList());
-        cardHand.add(filtered.get((int) (Math.random() * 6)));
+        System.out.println(filtered.size());
+        System.out.println(Arrays.toString(filtered.toArray()));
+        Collections.shuffle(filtered);
+        cardHand.add(filtered.get(0));
         this.hand = cardHand;
     }
 
@@ -127,4 +134,21 @@ public class Player {
         this.nickName = nickName;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", mana=" + mana +
+                ", life=" + life +
+                ", hand=" + hand +
+                ", type=" + type +
+                ", cards=" + cards +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
+    }
+
+    public void manaJuniorEffect(Card card) {
+        this.mana += card.getManaJuniorPoints();
+    }
 }

@@ -94,7 +94,7 @@ public class UserServiceTest {
         user.setId(1L);
         user.setNickName("nickName");
         when(this.userRepository.findByNickName(user.getNickName())).thenReturn(Optional.of(user));
-        UserData userdata = this.userService.userProfile(user.getNickName());
+        UserData userdata = this.userService.userProfile(user.getId());
         Assertions.assertEquals(user.getId(),userdata.getId());
     }
 
@@ -104,6 +104,6 @@ public class UserServiceTest {
         user.setId(1L);
         user.setNickName("nickName");
         when(this.userRepository.findByNickName(user.getNickName())).thenReturn(Optional.empty());
-        Assertions.assertThrows(NotFoundException.class,()->this.userService.userProfile(user.getNickName()));
+        Assertions.assertThrows(NotFoundException.class,()->this.userService.userProfile(user.getId()));
     }
 }

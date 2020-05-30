@@ -1,5 +1,6 @@
 package masterdev.br.com.zup.controller;
 
+import masterdev.br.com.zup.log.LogGame;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class GameController {
             return gameService.findGameById(idGame)
                 .map(game -> ResponseEntity.ok().body(game))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
+        } catch(Exception exception) {
+            new LogGame().error(exception.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }

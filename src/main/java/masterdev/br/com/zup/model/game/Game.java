@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import masterdev.br.com.zup.model.players.Bug;
 import masterdev.br.com.zup.model.players.Junior;
 import masterdev.br.com.zup.model.players.Player;
+import masterdev.br.com.zup.sort.PlayerCompare;
 
 import javax.persistence.*;
 import java.util.Arrays;
@@ -30,11 +31,12 @@ public class Game {
     }
 
     public Game(String nickName) {
-
-        players = Arrays.asList(new Bug(), new Junior(nickName));
+        this();
+        players = Arrays.asList(new Bug(), new Junior(nickName,move));
         this.status = GameStatusEnum.RUNNING;
         this.move = 1;
     }
+
     @JsonIgnore
     public Player getBug() {
 
@@ -46,10 +48,6 @@ public class Game {
         return this.players.get(1);
     }
 
-    public GameResponse toResponse() {
-
-        return new GameResponse(this.id);
-    }
 
     public long getId() {
         return id;
@@ -60,6 +58,7 @@ public class Game {
     }
 
     public List<Player> getPlayers() {
+        players.sort(new PlayerCompare());
         return players;
     }
 
@@ -89,6 +88,17 @@ public class Game {
 
     public void setMove(int move) {
         this.move = move;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", players=" + players +
+                ", status=" + status +
+                ", winner='" + winner + '\'' +
+                ", move=" + move +
+                '}';
     }
 
 }

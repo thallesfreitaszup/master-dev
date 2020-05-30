@@ -2,6 +2,7 @@ package masterdev.br.com.zup.controller;
 
 import masterdev.br.com.zup.dto.CardHandDto;
 import masterdev.br.com.zup.dto.RoundDto;
+import masterdev.br.com.zup.log.LogGame;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.game.Game;
 import masterdev.br.com.zup.model.players.PlayerTypeEnum;
@@ -39,12 +40,14 @@ public class RoundController {
                 try {
                     return ResponseEntity.status(HttpStatus.OK).body(roundService.roundJuniorEffect(roundDto, game));
                 } catch (Exception exception) {
+                    new LogGame().error(exception.getMessage());
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                 }
             } else if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
                 try {
                     return ResponseEntity.status(HttpStatus.OK).body(roundService.roundBugEffect(roundDto, game));
                 } catch (Exception exception) {
+                    new LogGame().error(exception.getMessage());
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                 }
             }
@@ -61,6 +64,7 @@ public class RoundController {
             try {
                 return ResponseEntity.status(HttpStatus.OK).body(roundService.skipEffect(game));
             } catch (Exception exception) {
+                new LogGame().error(exception.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
@@ -73,8 +77,11 @@ public class RoundController {
         if (gameService.findGameById(idGame).isPresent()) {
             game = gameService.findGameById(idGame).get();
             try {
+
                 return ResponseEntity.status(HttpStatus.OK).body(roundService.finishRoundEffect(game, cardHandDto.getBugHand(), cardHandDto.getJuniorHand()));
             } catch (Exception exception) {
+
+                new LogGame().error(exception.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
