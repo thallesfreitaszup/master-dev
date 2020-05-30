@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "eeeb1fa0-d7bb-4689-8214-a36fea6de995",
+		"name": "cardGame",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzcxIiwiaWQiOjcxLCJleHAiOjE1OTA2OTQ0NjN9.avUGzGA5esWn6Qzk_iqOxhKAz3nW1BlA_Q0lqe6EZes",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nickName\": \"thallesf\",\n\t\"password\" : \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODg0NDA5fQ.hlT3zI_eBaeyA0wmNuDYUg5NYI0ElZ7FTcZMWvlF6DY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nickName\": \"thallesf1\",\n\t\"password\" : \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "game",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/game",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moveJunior",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"playerType\": \"JUNIOR\",\n\t\"name\" : \"TECHLEADPOWER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/move",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"move"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moveBug",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"playerType\": \"BUG\",\n\t\"name\" : \"GOLPENAOCONSIGO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/move",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"move"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finishround",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n    \t\"juniorHand\": [\n    \t\t\t{\n                    \"name\": \"ANTIVIRUS\",\n                    \"manaPoints\": 2,\n                    \"damage\": 2,\n                   \n                    \"description\": \"Aqui a gente é protegido até contra COVID. RALA, vírus\",\n                    \"imgUrl\": \"https://i.imgur.com/3yV7yxV.png\"\n                },\n                {\n                    \"name\": \"FRAMEWORK\",\n                    \"manaPoints\": -3,\n                    \"damage\": 3,\n                    \"description\": \"É cada agilidade que esse framework dá! Tá doido!\",\n                    \"imgUrl\": \"https://i.imgur.com/vekhPge.png\"\n                },\n                {\n                    \"name\": \"CHANGEEXPERIENCEPOWER\",\n                    \"manaPoints\": -4,\n                    \"damage\": 6,\n                    \"description\": \"A mulecada unida é braba\",\n                    \"imgUrl\": \"https://i.imgur.com/pTYltoR.png\"\n                }\n    \t\t],\n\t\t\"bugHand\": [\n\t\t\t\t\n                {\n                    \"name\": \"CODIGOMALESCRITO\",\n                    \"manaPoints\": -6,\n                    \"damage\": 2,\n                   \n                    \"description\": \"Ixe, esse código não tá MAASSA não!\",\n                    \"imgUrl\": \"https://i.imgur.com/bCMLzxt.png\",\n                    \"juniorManaPoints\": -2\n                },\n                {\n                    \"name\": \"PERDEUADAILY\",\n                    \"manaPoints\": -3,\n                    \"damage\": 5,\n                   \n                    \"description\": \"Foi juvena, e acabou perdendo a hora da daily, né? Sentou na graxa!\",\n                    \"imgUrl\": \"https://i.imgur.com/bCMLzxt.png\"\n                },\n                {\n                    \"name\": \"ENDPOINTBATENDOERRADO\",\n                    \"manaPoints\": -4,\n                    \"damage\": 4,\n                    \n                    \"description\": \"Óia o endpoint cheio das exceções mal tratadas aí!\",\n                    \"imgUrl\": \"https://i.imgur.com/bCMLzxt.png\"\n                }\n    \t\t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/finishround",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"finishround"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
