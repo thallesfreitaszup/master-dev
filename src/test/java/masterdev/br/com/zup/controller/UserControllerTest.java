@@ -1,6 +1,7 @@
 package masterdev.br.com.zup.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import masterdev.br.com.zup.exception.BadRequestException;
 import masterdev.br.com.zup.model.user.User;
 import masterdev.br.com.zup.model.user.UserRequest;
 import masterdev.br.com.zup.service.GameService;
@@ -55,7 +56,7 @@ public class UserControllerTest {
         userRequest.setNickName("nickname");
         userRequest.setPassword("password");
 
-        when(userService.findUser(any())).thenReturn(Optional.of(user));
+        when(userService.createUser(any())).thenThrow(BadRequestException.class);
         mockMvc.perform(post("/user")
             .contentType(MediaType.APPLICATION_JSON)
             .content(mapper.writeValueAsString(userRequest)))
@@ -73,7 +74,7 @@ public class UserControllerTest {
         userRequest.setNickName("nickname");
         userRequest.setPassword("password");
 
-        when(userService.findUser(any())).thenReturn(Optional.empty());
+        when(userService.createUser(any())).thenReturn(user);
         mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(userRequest)))
