@@ -36,37 +36,21 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> registerUser(@RequestBody @Valid UserRequest userRequest) {
 
-        try {
-              return userService.findUser(userRequest.toEntity())
-              .map(user -> ResponseEntity.badRequest().build())
-              .orElseGet(() -> ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userRequest.toEntity())));
-        } catch(Exception exception ) {
-            new LogGame().error(exception.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+          return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userRequest.toEntity()));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> loginUser(@RequestBody @Valid UserRequest userRequest) {
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody @Valid UserRequest userRequest) throws NotFoundException {
 
-        try {
             final User user = userService.loginUser(userRequest);
             Game game = this.gameService.findOrCreateGame(user);
             return ResponseEntity.ok().body( new LoginResponse(user.getId(), JwtUtils.createJWT(game.getId())));
-        } catch(Exception exception) {
-            new LogGame().error(exception.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserData> userData(@PathVariable long id){
-        try{
+    public ResponseEntity<UserData> userData(@PathVariable long id) throws NotFoundException {
+
             return ResponseEntity.ok().body(userService.userProfile(id));
-        } catch (NotFoundException exception) {
-            new LogGame().error(exception.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
     }
 
 }

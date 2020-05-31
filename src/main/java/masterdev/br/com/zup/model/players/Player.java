@@ -42,14 +42,14 @@ public class Player {
         cardFiltered.setSelected(true);
     }
     public List<Card> shuffleInitialHand() {
-
-        return this.hand = this.cards.subList(0,4);
+        List<Card> initialHand = this.cards.subList(0,4);
+        Collections.shuffle(initialHand);
+        return this.hand = initialHand;
     }
     public void shuffleUsedCard(List<Card> cardHand) {
 
         List<Card> filtered = this.cards.stream().filter(card -> !cardHand.contains(card)).collect(Collectors.toList());
-        System.out.println(filtered.size());
-        System.out.println(Arrays.toString(filtered.toArray()));
+
         Collections.shuffle(filtered);
         cardHand.add(filtered.get(0));
         this.hand = cardHand;
@@ -150,5 +150,15 @@ public class Player {
 
     public void manaJuniorEffect(Card card) {
         this.mana += card.getManaJuniorPoints();
+    }
+
+    public void updateManaRound() {
+        this.mana+=2;
+    }
+
+    public Player restoreLifeAndMana() {
+        this.mana = 20;
+        this.life = 20;
+        return this;
     }
 }

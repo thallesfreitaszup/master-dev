@@ -2,6 +2,8 @@ package masterdev.br.com.zup.dto;
 
 public class UserData {
 
+    private  String imageUrl;
+
     private long id;
 
     private String name;
@@ -15,6 +17,7 @@ public class UserData {
         this.name = name;
         this.wins = wins;
         this.losses = losses;
+        this.imageUrl = "https://i.imgur.com/P9DAD9G.png";
     }
 
     public long getId() {
@@ -35,6 +38,18 @@ public class UserData {
 
     public void setWins(int wins) {
         this.wins = wins;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getLosses() {

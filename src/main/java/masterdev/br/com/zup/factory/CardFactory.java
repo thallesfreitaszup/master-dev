@@ -1,5 +1,6 @@
 package masterdev.br.com.zup.factory;
 
+import masterdev.br.com.zup.exception.BadRequestException;
 import masterdev.br.com.zup.model.card.Card;
 import masterdev.br.com.zup.model.card.CardNameEnum;
 import masterdev.br.com.zup.model.card.juniorDeck.*;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CardFactory extends Factory {
 
-    public  Card getCard(CardNameEnum cardNameEnum) throws Exception {
+    public  Card getCard(CardNameEnum cardNameEnum)  {
 
         switch (cardNameEnum) {
             case CHANGEEXPERIENCEPOWER:
@@ -49,7 +50,7 @@ public class CardFactory extends Factory {
             case SEMTESTE:
                 return new SemTeste();
             default:
-                throw new Exception("Not found");
+                throw new BadRequestException("Carta inexistente");
         }
     }
 
