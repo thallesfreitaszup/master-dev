@@ -23,7 +23,7 @@ public class Junior extends Player {
         this.imageUrl = "https://i.imgur.com/P9DAD9G.png";
     }
 
-    public Junior(String nickName,int move) {
+    public Junior(String nickName) {
         this();
         this.nickName = nickName;
     }

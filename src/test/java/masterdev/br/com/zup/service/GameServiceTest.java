@@ -65,7 +65,7 @@ public class GameServiceTest {
 
         when(gameRepository.findByPlayersNickName(user.getNickName())).thenReturn(Optional.of(gameRequest));
 
-        Optional<Game> game = gameService.findGame(user);
+        Optional<Game> game = gameService.findGameByUser(user);
 
         Assertions.assertEquals(gameRequest.getId(),game.get().getId());
     }

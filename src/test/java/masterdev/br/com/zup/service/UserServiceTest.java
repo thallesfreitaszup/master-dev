@@ -66,7 +66,7 @@ public class UserServiceTest {
         Assertions.assertEquals(user.getNickName(),userResponse.getNickName());
     }
     @Test
-    public void it_should_fail_authentication() throws NotFoundException {
+    public void it_should_fail_authentication()  {
         User user = new User();
         user.setNickName("nickname");
         user.setPassword(BcryptUtils.getInstance().hash("password"));
@@ -77,7 +77,7 @@ public class UserServiceTest {
         Assertions.assertThrows(BadCredentialsException.class,()-> userService.loginUser(userRequest));
     }
     @Test
-    public void it_should_throws_not_found() throws NotFoundException {
+    public void it_should_throws_not_found() {
         User user = new User();
         user.setNickName("nickname");
         user.setPassword(BcryptUtils.getInstance().hash("password"));

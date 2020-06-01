@@ -1,5 +1,6 @@
 package masterdev.br.com.zup.controller;
 
+import javassist.NotFoundException;
 import masterdev.br.com.zup.dto.CardHandDto;
 import masterdev.br.com.zup.dto.RoundDto;
 import masterdev.br.com.zup.log.LogGame;
@@ -25,67 +26,25 @@ public class RoundController {
     private RoundService roundService;
 
     @Autowired
-    RoundController(GameService gameService, RoundService roundService){
+    RoundController(GameService gameService, RoundService roundService) {
 
         this.gameService = gameService;
         this.roundService = roundService;
     }
 
-    @PostMapping (path = "/move")
-    public ResponseEntity<Game> moveUpdate(@RequestAttribute long idGame, @RequestBody RoundDto roundDto) {
-        Game game = null;
-        if (gameService.findGameById(idGame).isPresent()) {
-            game = gameService.findGameById(idGame).get();
-            if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.JUNIOR.getName())) {
-                try {
-                    return ResponseEntity.status(HttpStatus.OK).body(roundService.roundJuniorEffect(roundDto, game));
-                } catch (Exception exception) {
-                    new LogGame().error(exception.getMessage());
-                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-                }
-            } else if (roundDto.getPlayerType().equalsIgnoreCase(PlayerTypeEnum.BUG.getName())) {
-                try {
-                    return ResponseEntity.status(HttpStatus.OK).body(roundService.roundBugEffect(roundDto, game));
-                } catch (Exception exception) {
-                    new LogGame().error(exception.getMessage());
-                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-                }
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PostMapping(path = "/move")
+    public ResponseEntity<Game> moveUpdate(@RequestAttribute long idGame, @RequestBody RoundDto roundDto) throws NotFoundException {
+        return ResponseEntity.status(HttpStatus.OK).body(roundService.roundEffect(roundDto, idGame));
     }
 
-    @PostMapping (path = "/skipround")
-    public ResponseEntity<Game> skipUpdate(@RequestAttribute long idGame) {
-        Game game = null;
-        if (gameService.findGameById(idGame).isPresent()) {
-            game = gameService.findGameById(idGame).get();
-            try {
-                return ResponseEntity.status(HttpStatus.OK).body(roundService.skipEffect(game));
-            } catch (Exception exception) {
-                new LogGame().error(exception.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PostMapping(path = "/skipround")
+    public ResponseEntity<Game> skipUpdate(@RequestAttribute long idGame) throws NotFoundException {
+            return ResponseEntity.status(HttpStatus.OK).body(roundService.skipRoundEffect(idGame));
     }
 
-    @PostMapping (path = "/finishround")
-    public ResponseEntity<Game> finishRoundUpdate(@RequestAttribute long idGame, @RequestBody CardHandDto cardHandDto) {
-        Game game = null;
-        if (gameService.findGameById(idGame).isPresent()) {
-            game = gameService.findGameById(idGame).get();
-            try {
-
-                return ResponseEntity.status(HttpStatus.OK).body(roundService.finishRoundEffect(game, cardHandDto.getBugHand(), cardHandDto.getJuniorHand()));
-            } catch (Exception exception) {
-
-                new LogGame().error(exception.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PostMapping(path = "/finishround")
+    public ResponseEntity<Game> finishRoundUpdate(@RequestAttribute long idGame, @RequestBody CardHandDto cardHandDto) throws NotFoundException {
+            return ResponseEntity.status(HttpStatus.OK).body(roundService.finishRoundEffect(idGame,cardHandDto));
     }
 
 }

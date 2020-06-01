@@ -22,15 +22,10 @@ public class GameController {
 
     @GetMapping()
     public ResponseEntity<Game> getGame(@RequestAttribute long idGame) {
+        return gameService.findGameById(idGame)
+            .map(game -> ResponseEntity.ok().body(game))
+            .orElseGet(() -> ResponseEntity.badRequest().build());
 
-        try {
-            return gameService.findGameById(idGame)
-                .map(game -> ResponseEntity.ok().body(game))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
-        } catch(Exception exception) {
-            new LogGame().error(exception.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
     }
 
 }

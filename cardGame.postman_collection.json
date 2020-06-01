@@ -10,11 +10,7 @@
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzcxIiwiaWQiOjcxLCJleHAiOjE1OTA2OTQ0NjN9.avUGzGA5esWn6Qzk_iqOxhKAz3nW1BlA_Q0lqe6EZes",
-						"type": "text"
-					}
+
 				],
 				"body": {
 					"mode": "raw",
@@ -41,18 +37,27 @@
 		},
 		{
 			"name": "user/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c836ee8c-e516-44a1-883a-0715c77f3c00",
+						"exec": [
+							"const response = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"token\", response[\"token\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODg0NDA5fQ.hlT3zI_eBaeyA0wmNuDYUg5NYI0ElZ7FTcZMWvlF6DY",
-						"type": "text"
-					}
+
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nickName\": \"thallesf1\",\n\t\"password\" : \"123456\"\n}",
+					"raw": "{\n\t\"nickName\": \"thallesf\",\n\t\"password\" : \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,7 +89,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -118,7 +123,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -152,7 +157,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -186,7 +191,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXN0ZXJkZXYiLCJzdWIiOiJnYW1lLzYiLCJpZCI6NiwiZXhwIjoxNTkwODc4ODUwfQ.j_F2RtnosH7dGTirPepuHc6tgiPiQWMLcQWm_IxD3ro",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
